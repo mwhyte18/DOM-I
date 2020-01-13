@@ -37,6 +37,57 @@ const siteContent = {
   },
 };
 
+//images
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
+const logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+const codeSnippet = document.getElementById(`cta-img`);
+codeSnippet.setAttribute('src', siteContent[`cta`]['img-src']);
+
+const middlePic = document.getElementById(`middle-img`);
+middlePic.setAttribute('src', siteContent['main-content']['middle-img-src']);
+
+//navbar
+const navBar = document.querySelectorAll(`nav a`);
+const fillingNavBar = function(content){
+  const actualItem = Array.from(navBar);
+  const itemContent = Object.values(content);
+  actualItem.forEach(function(currItem, index){
+    currItem.textContent = itemContent[index]
+  });
+}
+fillingNavBar(siteContent.nav);
+
+
+
+//Top Section
+const ctaHeader = document.querySelector('.cta-text h1');
+ctaHeader.innerHTML = siteContent['cta']['h1'];
+
+const ctaButton = document.querySelector('.cta-text button');
+ctaButton.innerHTML = siteContent['cta']['button'];
+
+
+
+//Main Content
+function fillingMainContent(elements, content){
+  elements.forEach(function(element, index){
+    element.innerHTML = content[index];
+  })
+}
+ let h4 = document.querySelectorAll('.text-content h4');
+ let p = document.querySelectorAll('.text-content p')
+ let titleOrText = Object.keys(siteContent['main-content']);
+ let allH4s = [];
+ let allPs = [];
+  titleOrText.forEach(function(element){
+    if (element.includes('h4')) {
+      allH4s.push(siteContent['main-content'][element]);
+    }
+    else if(element.includes('content')){
+      allPs.push(siteContent['main-content'][element]);
+    }
+  });
+  fillingMainContent(h4, allH4s);
+  fillingMainContent(p, allPs);
