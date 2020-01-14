@@ -76,11 +76,11 @@ function fillingMainContent(elements, content){
     element.innerHTML = content[index];
   })
 }
- let h4 = document.querySelectorAll('.text-content h4');
- let p = document.querySelectorAll('.text-content p')
- let titleOrText = Object.keys(siteContent['main-content']);
- let allH4s = [];
- let allPs = [];
+ const h4 = document.querySelectorAll('.text-content h4');
+ const p = document.querySelectorAll('.text-content p')
+ const titleOrText = Object.keys(siteContent['main-content']);
+ const allH4s = [];
+ const allPs = [];
   titleOrText.forEach(function(element){
     if (element.includes('h4')) {
       allH4s.push(siteContent['main-content'][element]);
@@ -91,3 +91,19 @@ function fillingMainContent(elements, content){
   });
   fillingMainContent(h4, allH4s);
   fillingMainContent(p, allPs);
+
+  //Contact and footer Section
+    //h4 header
+  const contactH4 = document.querySelector('.contact h4');
+  contactH4.innerHTML = siteContent['contact']['contact-h4'];
+    //ps
+  const contactP = document.querySelectorAll('.contact p');
+  const contentForPs = Object.values(siteContent['contact']).splice(1, 3);
+  contactP.forEach(function(element, index){
+    element.innerHTML = contentForPs[index];
+  })
+    //footer
+  const footer = document.querySelector('footer p');
+  footer.innerHTML = siteContent['footer']['copyright'];
+  
+   
